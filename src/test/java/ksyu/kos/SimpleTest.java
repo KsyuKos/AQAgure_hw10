@@ -38,7 +38,7 @@ public class SimpleTest {
     })
     @ParameterizedTest(name = "Проверка выдачи результатов поиска яндекса по запросу {0}")
     @Blocker
-    void SearchResultsShouldBeGreaterThen10 (String data) {
+    void searchResultsShouldBeGreaterThen10 (String data) {
         $("#text").setValue(data).pressEnter();
         $$("li.serp-item").shouldHave(sizeGreaterThan(9));
     }
@@ -46,7 +46,7 @@ public class SimpleTest {
     @Disabled
     @Test
     @DisplayName("Проверка доступности перехода в режим поиска по голосу")
-    void SearchPageShouldHaveImage () {
+    void searchPageShouldHaveImage () {
         $("svg.search3__svg_voice").click();
         $("div.alice-container").shouldHave(text("Чем я могу помочь?"));
     }
@@ -57,7 +57,7 @@ public class SimpleTest {
     })
     @ParameterizedTest(name = "Проверка наличия заголовка {1} в первом результате выдачи по запросу {0}")
     @Blocker
-    void SearchResultsShouldBeGreaterThen10 (String testdata,String caption) {
+    void searchResultsShouldBeGreaterThen10 (String testdata,String caption) {
         $("#text").setValue(testdata).pressEnter();
         $$("li.serp-item").first().shouldHave(text(testdata));
     }

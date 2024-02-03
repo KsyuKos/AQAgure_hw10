@@ -58,7 +58,7 @@ public class SimpleHomeTest {
     @ParameterizedTest(name = "При выборе группы {0} топ лист услуг должен иметь заданный размер {1}")
     @CsvFileSource(resources = {"/testdata/targetGroupShouldHaveTopListServices.csv"},delimiter = '|')
     @Tag("SMOKE")
-    void GroupShouldHaveFixedAmountServices (String targetGroup, int amountServices) {
+    void groupShouldHaveFixedAmountServices (String targetGroup, int amountServices) {
         $("lib-header-select-role.ng-star-inserted").click();
         $(".list.ng-star-inserted").$$("button.ng-star-inserted").findBy(text(targetGroup)).click();
         $$("portal-plain-button.ng-star-inserted").shouldHave(size(amountServices));
