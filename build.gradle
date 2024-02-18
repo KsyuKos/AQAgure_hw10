@@ -12,6 +12,11 @@ repositories {
 dependencies {
     testImplementation 'com.codeborne:selenide:6.17.0'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testImplementation 'commons-io:commons-io:2.15.1'
+    testImplementation 'com.codeborne:pdf-test:1.5.0'
+    testImplementation 'com.codeborne:xls-test:1.4.3'
+    testImplementation 'com.opencsv:opencsv:5.9'
+    testImplementation 'com.google.code.gson:gson:2.10.1'
 }
 
 tasks.withType(JavaCompile) {
