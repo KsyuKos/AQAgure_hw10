@@ -16,7 +16,9 @@ dependencies {
     testImplementation 'com.codeborne:pdf-test:1.5.0'
     testImplementation 'com.codeborne:xls-test:1.4.3'
     testImplementation 'com.opencsv:opencsv:5.9'
-    testImplementation 'com.google.code.gson:gson:2.10.1'
+    //testImplementation 'com.google.code.gson:gson:2.10.1'
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind:2.16.1'
+
 }
 
 tasks.withType(JavaCompile) {

@@ -2,6 +2,8 @@ package ksyu.kos;
 
 import com.codeborne.pdftest.PDF;
 import com.codeborne.xlstest.XLS;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.opencsv.CSVReader;
 import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Assertions;
@@ -9,7 +11,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
-import java.sql.SQLOutput;
+import java.util.Arrays;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -40,6 +42,7 @@ public class SelenideFileTest {
     }
 
     private final ClassLoader cl = SelenideFileTest.class.getClassLoader();
+    //private final Gson gson = new Gson();
 
     @Test
     void checkFileFromZip() throws Exception {
@@ -76,4 +79,20 @@ public class SelenideFileTest {
         }
     }
 
-}
+    @Test
+    void checkJsonTest () throws Exception {
+        InputStream getJson = cl.getResourceAsStream("testdata/json.json");
+             //Reader getJsonReader = new InputStreamReader(getJson)) {
+            //JsonObject obj = gson.fromJson(getJsonReader, JsonObject.class);
+            //Assertions.assertEquals("ACTIVE", obj.get("status").getAsString());
+            //Assertions.assertArrayEquals(asList(), obj.get("status").getAsString());
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            Account objectAccount = objectMapper.readValue(getJson, Account.class);
+            Assertions.assertEquals(objectAccount.getStatus(), "ACTIVE");
+            Assertions.assertEquals(objectAccount.getTransactions().getAmount(), 3000);
+            Assertions.assertEquals(objectAccount.getRemote_accounts().get(0).getBalance(), 1000);
+        }
+    }
+
+
