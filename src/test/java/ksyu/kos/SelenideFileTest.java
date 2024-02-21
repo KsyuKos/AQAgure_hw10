@@ -42,7 +42,6 @@ public class SelenideFileTest {
     }
 
     private final ClassLoader cl = SelenideFileTest.class.getClassLoader();
-    //private final Gson gson = new Gson();
 
     @Test
     void checkFileFromZip() throws Exception {
@@ -82,16 +81,17 @@ public class SelenideFileTest {
     @Test
     void checkJsonTest () throws Exception {
         InputStream getJson = cl.getResourceAsStream("testdata/json.json");
-             //Reader getJsonReader = new InputStreamReader(getJson)) {
-            //JsonObject obj = gson.fromJson(getJsonReader, JsonObject.class);
-            //Assertions.assertEquals("ACTIVE", obj.get("status").getAsString());
-            //Assertions.assertArrayEquals(asList(), obj.get("status").getAsString());
 
             ObjectMapper objectMapper = new ObjectMapper();
             Account objectAccount = objectMapper.readValue(getJson, Account.class);
             Assertions.assertEquals(objectAccount.getStatus(), "ACTIVE");
             Assertions.assertEquals(objectAccount.getTransactions().getAmount(), 3000);
             Assertions.assertEquals(objectAccount.getRemote_accounts().get(0).getBalance(), 1000);
+            Assertions.assertArrayEquals(new Integer[]{1000,2000}, objectAccount
+                    .getRemote_accounts()
+                    .stream()
+                    .map(RemoteAccounts::getBalance)
+                    .toArray());
         }
     }
 

@@ -2,7 +2,7 @@ package ksyu.kos;
 
 public class RemoteAccounts {
     private String id;
-    private int balance;
+    private Integer balance;
 
     public String getId() {
         return id;

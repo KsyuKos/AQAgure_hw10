@@ -3,7 +3,7 @@ package ksyu.kos;
 
 public class Transactions {
     private String order;
-    private int amount;
+    private Integer amount;
 
     public String getOrder() {
         return order;

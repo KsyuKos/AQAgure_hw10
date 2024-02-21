@@ -3,11 +3,11 @@
   "remote_accounts": [
     {
       "id": "4162ffc7-9adc-4fdb-859a-d3217414fede",
-      "balance": "1000"
+      "balance": 1000
     },
     {
       "id": "135f8124-e7c1-4da5-8782-50630a7385ff",
-      "balance": "2000"
+      "balance": 2000
     }
   ],
   "status": "ACTIVE",
