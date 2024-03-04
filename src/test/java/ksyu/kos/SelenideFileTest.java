@@ -76,13 +76,20 @@ public class SelenideFileTest {
              ZipInputStream zipStream = new ZipInputStream(getZip)) {
 
             ZipEntry filePdf;
+            int n = 0;
+
 
             while ((filePdf = zipStream.getNextEntry()) != null) {
 
                 if (filePdf.getName().equals("pdf.pdf")) {
                     PDF contentPdf = new PDF(zipStream);
                     assertThat(contentPdf.numberOfPages).isEqualTo(4);
+                    n++;
                 }
+            }
+
+            if (n == 0){
+                throw new IOException("Файла нет в архиве");
             }
         }
     }
@@ -94,6 +101,7 @@ public class SelenideFileTest {
              ZipInputStream zipStream = new ZipInputStream(getZip)) {
 
             ZipEntry fileXlsx;
+            int n = 0;
 
             while ((fileXlsx = zipStream.getNextEntry()) != null) {
 
@@ -105,7 +113,12 @@ public class SelenideFileTest {
                                     getRow(1).
                                     getCell(1).
                                     getStringCellValue()).isEqualTo("test2");
+                    n++;
                 }
+            }
+
+            if (n == 0){
+                throw new IOException("Файла нет в архиве");
             }
         }
     }
@@ -127,8 +140,6 @@ public class SelenideFileTest {
                 .map(RemoteAccounts::getBalance)
                 .toArray()).isEqualTo(new Integer[]{1000, 2000});
     }
-
-
 
 }
 
